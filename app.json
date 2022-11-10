@@ -1,15 +1,19 @@
 {
   "expo": {
-    "name": "nlwcopamobile",
+    "name": "Bolão da copa",
     "slug": "nlwcopamobile",
+    "scheme": "nlwcopamobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": [
+      "android"
+    ],
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,10 +28,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.emanoeledevapps.bolaocopa",
+      "permissions": [
+        "INTERNET",
+        "SYSTEM_ALERT_WINDOW"
+      ],
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5284b67f-1b1b-437a-9267-27db27860e72"
+      }
     }
   }
 }
