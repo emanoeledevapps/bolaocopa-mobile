@@ -1,8 +1,6 @@
 import { Button, HStack, Text, useTheme, VStack, useToast } from 'native-base';
 import { X, Check } from 'phosphor-react-native';
-import { getName } from 'country-list';
-import dayjs from 'dayjs';
-import ptBR from 'dayjs/locale/pt-br';
+import { getNameTeams} from '../services/getNameTeams';
 import {useState, useEffect} from 'react';
 import {Keyboard} from 'react-native';
 import { Team } from './Team';
@@ -39,12 +37,12 @@ export function Game({ data, poolId, fetchGames}: Props) {
 	const [secondTeamPoints, setSecondTeamPoints] = useState('');
 	const { colors, sizes } = useTheme();
 	const [disablePalpite, setDisablePalpite] = useState(false);
-	const dateGame = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY [às] HH:00[h]");
 	
 	useEffect(() => {
 		compareDate();
-	}, [])
+	}, []);
 
+	
 	async function compareDate(){
 		const res = compareAsc(new Date(data.date), new Date());
 		if(res === -1){
@@ -99,7 +97,7 @@ export function Game({ data, poolId, fetchGames}: Props) {
 		p={4}
 		>
 		<Text color="gray.100" fontFamily="heading" fontSize="sm">
-			{getName(data.firstTeamCountryCode)} vs. {getName(data.secondTeamCountryCode)}
+			{getNameTeams(data.firstTeamCountryCode)}  vs.  {getNameTeams(data.secondTeamCountryCode)}
 		</Text>
 
 		<Text color="gray.200" fontSize="xs">
@@ -146,6 +144,16 @@ export function Game({ data, poolId, fetchGames}: Props) {
 			</HStack>
 			</Button>
 		}
+
+		{!data.guess && !disablePalpite && (
+			<Text 
+				color='red.500'
+				fontSize={11}
+				textAlign='center'
+			>
+				Antenção! Depois de confirmar, você não pode alterar o seu palpite neste bolão!
+			</Text>
+		)}
 		</VStack>
 	);
 }

@@ -1,14 +1,15 @@
 import {useState} from 'react';
 import { Heading, VStack, Text, useToast, Image } from "native-base";
 import { Header } from "../components/Header";
-import Logo from '../assets/logo.svg';
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import {api} from '../services/api';
 import {Keyboard} from 'react-native';
 import LogoBy from '../assets/logoby.png';
+import {useNavigation} from '@react-navigation/native';
 
 export function New(){
+    const navigation = useNavigation();
     const toast = useToast();
     const [poolTitle, setPoolTitle] = useState('');
     const [loading, setLoading] = useState(false);
@@ -31,7 +32,9 @@ export function New(){
                 title: 'Bolão criado!',
                 placement: 'top',
                 bgColor: 'green.500'
-            })
+            });
+
+            navigation.goBack();
         }catch(err){
             toast.show({
                 title: 'Não foi possível criar o bolão!',
