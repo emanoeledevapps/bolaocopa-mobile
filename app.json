@@ -3,10 +3,15 @@
     "name": "Bolão da copa",
     "slug": "nlwcopamobile",
     "scheme": "nlwcopamobile",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-ads-admob"
+      ]
+    ],
     "platforms": [
       "android"
     ],
@@ -34,7 +39,10 @@
         "INTERNET",
         "SYSTEM_ALERT_WINDOW"
       ],
-      "versionCode": 2
+      "versionCode": 3,
+      "config":{
+        "googleMobileAdsAppId": "ca-app-pub-4539514279472560~3334821416"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

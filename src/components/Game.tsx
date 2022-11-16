@@ -20,6 +20,8 @@ export interface GameProps {
   id: string;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
+  firstTeamPoints: number;
+  secondTeamPoints: number;
   guess: null | GuessProps;
   date: string;
 };
@@ -109,7 +111,7 @@ export function Game({ data, poolId, fetchGames}: Props) {
 				code={data.firstTeamCountryCode}
 				position="right"
 				onChangeText={setFirstTeamPoints}
-				value={data.guess ? String(data.guess.firstTeamPoints) : ''}
+				value={data.guess ? String(data.guess.firstTeamPoints) : ''}	
 			/>
 
 			<X color={colors.gray[300]} size={sizes[6]} />
@@ -121,6 +123,15 @@ export function Game({ data, poolId, fetchGames}: Props) {
 				value={data.guess ? String(data.guess.secondTeamPoints) : ''}
 			/>
 		</HStack>
+
+		{disablePalpite && (
+			<VStack alignItems="center" mt={!data.guess ? -9 : -8}>
+				<Text color='green.500'  fontSize={20} fontWeight='bold'>
+					{Number(data.firstTeamPoints) < 0 ? '0' : data.firstTeamPoints}      {Number(data.secondTeamPoints) < 0 ? '0' : data.secondTeamPoints} 
+				</Text>
+				<Text color='gray.300' fontSize={11}>Resultado da partida</Text>
+			</VStack>
+		)}
 
 		{
 			!data.guess &&

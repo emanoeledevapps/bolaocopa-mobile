@@ -8,7 +8,7 @@ import {PoolProps} from '../components/PoolCard';
 import { PoolHeader } from '../components/PoolHeader';
 import { EmptyMyPoolList } from '../components/EmptyMyPoolList';
 import { Option } from '../components/Option';
-import {Share, FlatList} from 'react-native';
+import {Share, FlatList, KeyboardAvoidingView, Platform} from 'react-native';
 
 import {ParticipantProps} from '../components/Participants';
 import {Guesses} from '../components/Guesses';
@@ -182,7 +182,13 @@ export function Details(){
                     </HStack>
 
                     {optionSelected === 'Seus Palpites' ? (
-                        <Guesses poolId={poolDetails.id}/>
+                        // <KeyboardAvoidingView
+                        //     style={{width: '100%'}}
+                        //     behavior='height'
+                        //     keyboardVerticalOffset={100}
+                        // >
+                        // </KeyboardAvoidingView>
+                            <Guesses poolId={poolDetails.id}/>
                     ) : (
                         <FlatList
                             data={participants}
